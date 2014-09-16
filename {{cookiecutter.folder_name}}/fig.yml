@@ -10,9 +10,11 @@ hub:
         - /config
         - /data
         - /run
-app:
+{{cookiecutter.wheel_name}}:
     build: spoke
     volumes_from:
         - hub
     ports:
         - "22229:22"
+    environment:
+        GH_USER: {{cookiecutter.github_username}}

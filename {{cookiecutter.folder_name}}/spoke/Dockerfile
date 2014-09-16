@@ -8,10 +8,8 @@ ENV             DEBIAN_FRONTEND noninteractive
 RUN             apt-get -q update && apt-get -qyV install \
                     {{NULL}} &&\
                 apt-get clean
-RUN             env --unset=DEBIAN_FRONTEND
 
-# File Permissions
+# Set Spoke ID
 ENV             SPOKE_NAME {{cookiecutter.wheel_name}}
 
-# Public keys
-ENV             GH_USER {{cookiecutter.github_username}}
+COPY            /entrypoint.sh /entrypoint.sh
