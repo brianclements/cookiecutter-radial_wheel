@@ -1,20 +1,20 @@
 logs:
-    image: "radial/axle-base:latest"
-    volumes:
-        - /log
+  image: "radial/axle-base:latest"
+  volumes:
+    - /log
 hub:
-    build: hub
-    volumes_from:
-        - logs
-    volumes:
-        - /config
-        - /data
-        - /run
+  build: hub
+  volumes_from:
+    - logs
+  volumes:
+    - /config
+    - /data
+    - /run
 {{cookiecutter.wheel_name}}:
-    build: spoke
-    volumes_from:
-        - hub
-    ports:
-        - "22229:22"
-    environment:
-        GH_USER: {{cookiecutter.github_username}}
+  build: spoke
+  volumes_from:
+    - hub
+  ports:
+    - "22229:22"
+  environment:
+    GH_USER: {{cookiecutter.github_username}}
