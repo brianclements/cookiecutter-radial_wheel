@@ -6,10 +6,6 @@ hub:
   build: hub
   volumes_from:
     - logs
-  volumes:
-    - /config
-    - /data
-    - /run
 {{cookiecutter.wheel_name}}:
   build: spoke
   volumes_from:
