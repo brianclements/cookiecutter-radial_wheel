@@ -1,0 +1,22 @@
+logs:
+  image: "radial/axle-base:latest"
+  volumes:
+    - /log
+hub:
+  image: "radial/hub-base:latest"
+  volumes_from:
+    - logs
+  volumes:
+    - /config
+    - /data
+    - /run
+  environment:
+    WHEEL_REPO_{{cookiecutter.wheel_name}}: "https://github.com/radial/{{cookiecutter.folder_name}}.git"
+{{cookiecutter.wheel_name}}:
+  image: "radial/{{cookiecutter.wheel_name}}:latest"
+  volumes_from:
+    - hub
+  ports:
+    - "22229:22"
+  environment:
+    GH_USER: {{cookiecutter.github_username}}
